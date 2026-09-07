@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'McCal Development',
   shortName: 'McCal Dev',
-  url: 'https://dev.mcc-cal.com',
+  url: 'https://mccal-codes.github.io',
   person: 'Caleb McCartney',
   /** The headline. Written as a person, not as a positioning statement. */
   headline: 'I build the tools I wanted to exist.',

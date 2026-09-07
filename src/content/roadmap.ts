@@ -51,7 +51,7 @@ export const ROADMAP: RoadmapGroup[] = [
         date: 'August 2026',
         title: 'Technical portfolio split out',
         detail:
-          'Software work moved to its own publication at dev.mcc-cal.com rather than sharing the photography site.',
+          'Software work moved to its own publication rather than sharing the photography site.',
       },
     ],
   },

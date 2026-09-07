@@ -1,5 +1,5 @@
 /**
- * The content schema for dev.mcc-cal.com.
+ * The content schema for the technical portfolio.
  *
  * Every project page renders through `Project`. Adding a project means adding one
  * entry to `projects.ts`: the index row, the route, the metadata table, and the

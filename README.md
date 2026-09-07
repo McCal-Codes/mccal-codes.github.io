@@ -1,6 +1,7 @@
 # McCal Development
 
-Technical product portfolio for `dev.mcc-cal.com`.
+Technical product portfolio, published at
+[mccal-codes.github.io](https://mccal-codes.github.io).
 
 ## Purpose
 
@@ -17,7 +18,6 @@ Design direction: **dark technical editorial with product-system structure.**
 ## Local development
 
 ```bash
-cd sites/mcc-cal-dev
 npm install
 npm run dev
 ```
@@ -25,10 +25,15 @@ npm run dev
 Runs on http://localhost:4320.
 
 ```bash
-npm run build      # tsc -b && vite build
-npm run typecheck  # tsc -b
-npm run lint       # eslint
+npm run build          # tsc -b && vite build && pre-render routes
+npm run verify:dist    # check dist is publishable
+npm run typecheck      # tsc -b
+npm run lint           # eslint
 ```
+
+Use `npm run preview:static` to check a build, not `npm run preview`. `vite
+preview` falls back to `index.html` for unknown paths, hiding the 404 behavior
+that matters on Pages.
 
 ## Architecture
 
@@ -39,9 +44,45 @@ npm run lint       # eslint
 | `src/components/` | The component kit (index rows, metadata tables, section nav, diagrams, timelines). |
 | `src/styles/tokens.css` | The design system. One accent token, one type scale. |
 | `public/fonts/` | Self-hosted woff2. The CSP is `font-src 'self'`, so no external font host will load. |
+| `scripts/emit-route-pages.js` | Post-build. Pre-renders a page per route, injects the CSP, writes the sitemap. |
+| `scripts/verify-dist.js` | Independent check that the build produced a publishable `dist`. |
 
 Adding a project means adding one entry to `src/content/projects.ts`. The index row, the route,
-the metadata table, and the sticky section nav all derive from it.
+the metadata table, and the sticky section nav all derive from it. Adding or removing one fails
+the build until the slug lists in `scripts/emit-route-pages.js` are updated to match.
+
+## Deployment
+
+GitHub Actions builds and publishes to GitHub Pages on every push to `main`
+(`.github/workflows/deploy.yml`). Pages serves static files only, which drives
+two decisions.
+
+**Routes are pre-rendered.** Pages has no rewrite mechanism, so an SPA normally
+serves every deep link under an HTTP 404. This site is indexed, so
+`scripts/emit-route-pages.js` writes a real `index.html` per route and keeps
+`404.html` as the catch-all. Projects without a case study redirect to the
+index, so they are not pre-rendered.
+
+**The CSP is a meta tag, injected at build time.** It is not in `index.html`
+because `script-src 'self'` would break `vite dev` and its inline HMR script.
+
+### Security headers this site does not have
+
+The previous host set response headers. Pages cannot. These are not recoverable
+without a proxy in front of the site:
+
+| Header | Status |
+| --- | --- |
+| `Content-Security-Policy` | Kept, as a `<meta>` tag. `frame-ancestors` is ignored in meta and was dropped. |
+| `X-Frame-Options` | Lost. With `frame-ancestors` also inert, the site has no clickjacking protection. |
+| `Strict-Transport-Security` | Lost. Pages does not send HSTS. |
+| `Permissions-Policy` | Lost. No meta equivalent. |
+| `Cross-Origin-Opener-Policy` | Lost. No meta equivalent. |
+| `X-Content-Type-Options` | Lost. Low impact: no uploads, all assets content-hashed. |
+| `Referrer-Policy` | Kept, as `<meta name="referrer">`. |
+| `Cache-Control: immutable` | Lost. Pages serves a uniform `max-age=600`. Vite content-hashes filenames, so this costs performance, not correctness. |
+
+Recorded rather than fixed. Do not assume the previous posture carried over.
 
 ## Content rules
 
@@ -49,15 +90,3 @@ the metadata table, and the sticky section nav all derive from it.
 - No AI terminology, branding, or features.
 - No em dashes in site copy. Use commas, parentheses, or sentence breaks.
 - Status is communicated by shape and text, never by color alone.
-
-## Required Vercel setup
-
-1. Create a **separate Vercel project** with root directory `sites/mcc-cal-dev`.
-2. Point `dev.mcc-cal.com` at it.
-
-   **`dev.mcc-cal.com` is currently the photography site's preview domain.** It must be released
-   first, and the photography project's preview-environment `VITE_SITE_URL` updated, or production
-   canonical URLs will regress. See `docs/runbooks/vercel-dev-portfolio.md` and
-   `docs/learned/audit-remediation-and-deploy-pipeline-pitfalls.md` section 1.
-
-3. No environment variables are required. The site has no API surface and no runtime data fetching.
