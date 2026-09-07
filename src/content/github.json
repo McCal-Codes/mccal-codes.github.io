@@ -1,6 +1,6 @@
 {
-  "generatedBy": "sites/mcc-cal-dev/scripts/sync-github.js",
-  "generatedAt": "2026-09-07T06:55:38.232Z",
+  "generatedBy": "scripts/sync-github.js",
+  "generatedAt": "2026-09-07T18:10:38.773Z",
   "repos": [
     {
       "slug": "terranova",
