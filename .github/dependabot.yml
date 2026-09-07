@@ -1,0 +1,14 @@
+# The package's dependencies were unmanaged while it lived in the monorepo:
+# that repo's dependabot config had no entry for this path.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
