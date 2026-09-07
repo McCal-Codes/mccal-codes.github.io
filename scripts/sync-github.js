@@ -139,7 +139,7 @@ async function main() {
   }
 
   const payload = {
-    generatedBy: 'sites/mcc-cal-dev/scripts/sync-github.js',
+    generatedBy: 'scripts/sync-github.js',
     generatedAt: new Date().toISOString(),
     repos,
   };
