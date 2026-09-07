@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/emit-route-pages.js",
     "sync:github": "node scripts/sync-github.js",
     "sync:github:dry": "node scripts/sync-github.js --dry-run",
     "preview": "vite preview",
+    "preview:static": "python3 -m http.server -d dist 4321",
     "lint": "eslint . --ignore-pattern dist",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "verify:dist": "node scripts/verify-dist.js"
   },
   "dependencies": {
     "react": "^19.2.7",
