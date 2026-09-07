@@ -68,14 +68,14 @@ because `script-src 'self'` would break `vite dev` and its inline HMR script.
 
 ### Security headers this site does not have
 
-The previous host set response headers. Pages cannot. These are not recoverable
-without a proxy in front of the site:
+The previous host set response headers. Pages cannot. Measured against the live
+site, these are not recoverable without a proxy in front of it:
 
 | Header | Status |
 | --- | --- |
 | `Content-Security-Policy` | Kept, as a `<meta>` tag. `frame-ancestors` is ignored in meta and was dropped. |
 | `X-Frame-Options` | Lost. With `frame-ancestors` also inert, the site has no clickjacking protection. |
-| `Strict-Transport-Security` | Lost. Pages does not send HSTS. |
+| `Strict-Transport-Security` | Kept. GitHub serves it on `github.io` (`max-age=31556952`). A custom domain would lose it. |
 | `Permissions-Policy` | Lost. No meta equivalent. |
 | `Cross-Origin-Opener-Policy` | Lost. No meta equivalent. |
 | `X-Content-Type-Options` | Lost. Low impact: no uploads, all assets content-hashed. |
