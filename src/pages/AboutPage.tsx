@@ -1,13 +1,15 @@
 import { SITE } from '@/content/site';
-import Prose from '@/components/Prose';
 import { useDocumentMeta } from '@/lib/useDocumentTitle';
 import styles from './PageShell.module.css';
 
+const LINKS = [
+  { label: 'Photography portfolio', href: SITE.portfolio },
+  { label: 'GitHub', href: SITE.github },
+  { label: 'Support on Ko-fi', href: SITE.kofi },
+] as const;
+
 export default function AboutPage() {
-  useDocumentMeta(
-    'About',
-    'Caleb McCartney builds open-source applications and development tools, and works as an editorial photographer.',
-  );
+  useDocumentMeta('About', SITE.description);
 
   return (
     <>
@@ -15,26 +17,22 @@ export default function AboutPage() {
         <div className="shell">
           <p className={`${styles.eyebrow} meta`}>About</p>
           <h1 className={styles.title}>{SITE.person}</h1>
+          <p className={styles.role}>{SITE.role}</p>
+          <p className={styles.lede}>{SITE.intro}</p>
         </div>
       </header>
 
       <div className={`${styles.body} shell`}>
-        <Prose
-          paragraphs={[
-            'I build software for creative and technical work: desktop tooling, mobile applications, and the systems that sit underneath them. Most of it starts because a workflow I depend on is worse than it needs to be.',
-            'The projects here are real and in progress. Where something is a prototype, it says prototype. Where a case study has not been written, the index says so rather than linking to a page of filler.',
-            'I also work as an editorial photographer. That work lives on a separate site, because it is a different medium and deserves a different system.',
-          ]}
-        />
-
-        <div className={styles.links}>
-          <a className={styles.link} href={SITE.github} rel="noreferrer" target="_blank">
-            GitHub<span aria-hidden="true"> ↗</span>
-          </a>
-          <a className={styles.link} href={SITE.portfolio} rel="noreferrer" target="_blank">
-            Photography portfolio<span aria-hidden="true"> ↗</span>
-          </a>
-        </div>
+        <ul className={styles.links}>
+          {LINKS.map((link) => (
+            <li key={link.label}>
+              <a className={styles.link} href={link.href} rel="noreferrer" target="_blank">
+                {link.label}
+                <span aria-hidden="true"> ↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

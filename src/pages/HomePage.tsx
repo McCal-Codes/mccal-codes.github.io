@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ACTIVITY } from '@/content/activity';
 import { NOTES } from '@/content/notes';
 import { PROJECTS, getProject } from '@/content/projects';
-import { SITE } from '@/content/site';
+import { SHOW_NOTES, SITE } from '@/content/site';
 import NoteCard from '@/components/NoteCard';
 import ProjectTile from '@/components/ProjectTile';
 import { useDocumentMeta } from '@/lib/useDocumentTitle';
@@ -96,6 +96,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {SHOW_NOTES && (
       <section aria-labelledby="notes-heading" className={styles.section}>
         <div className="shell-wide">
           <div className={styles.notesHead}>
@@ -114,6 +115,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      )}
     </>
   );
 }

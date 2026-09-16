@@ -45,6 +45,32 @@ for (const path of MUST_NOT_EXIST) {
   }
 }
 
+// Route pages carry their content in the HTML, not just an empty app shell.
+const RENDERED = {
+  'index.html': 'Photojournalist &amp; Developer',
+  'about/index.html': 'Photojournalist &amp; Developer',
+  'projects/terranova/index.html': 'An offline design studio for Hytale World Generation V2.',
+  'projects/abridgd/index.html': 'Where it stands',
+};
+for (const [path, text] of Object.entries(RENDERED)) {
+  try {
+    const page = readFileSync(join(dist, path), 'utf8');
+    if (page.includes('<div id="root"></div>')) problems.push(`dist/${path} was not pre-rendered`);
+    else if (!page.includes(text)) problems.push(`dist/${path} is missing "${text}"`);
+  } catch {
+    /* already reported as missing above */
+  }
+}
+
+// The 404 page renders on the client, so its root must stay empty.
+try {
+  if (!readFileSync(join(dist, '404.html'), 'utf8').includes('<div id="root"></div>')) {
+    problems.push('dist/404.html should ship an empty root');
+  }
+} catch {
+  /* already reported as missing above */
+}
+
 // The CSP is the site's only remaining security control. Check a route page.
 try {
   const page = readFileSync(join(dist, 'notes/index.html'), 'utf8');

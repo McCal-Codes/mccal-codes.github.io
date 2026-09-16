@@ -13,10 +13,11 @@
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const dist = join(root, 'dist');
+const serverEntry = join(root, 'dist-server', 'entry-server.js');
 
 const SITE_URL = 'https://mccal-codes.github.io';
 
@@ -130,6 +131,29 @@ function setCanonical(html, url) {
   return withOg.replace('</head>', `  <link rel="canonical" href="${url}" />\n  </head>`);
 }
 
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/** Puts the pre-rendered markup in the root and the page's own title in the head. */
+function withContent(html, { html: markup, title, description }) {
+  const root = '<div id="root"></div>';
+  if (!html.includes(root)) fail(`dist/index.html has no empty ${root} to render into.`);
+
+  const t = escapeHtml(title);
+  const d = escapeHtml(description);
+  return html
+    .replace(root, `<div id="root">${markup}</div>`)
+    .replace(/<title>[^<]*<\/title>/, `<title>${t}</title>`)
+    .replace(/(<meta\s+name="description"\s+content=")[^"]*(")/, `$1${d}$2`)
+    .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${t}$2`)
+    .replace(/(<meta\s+property="og:description"\s+content=")[^"]*(")/, `$1${d}$2`);
+}
+
 function write(relativePath, contents) {
   const target = join(dist, relativePath);
   mkdirSync(dirname(target), { recursive: true });
@@ -144,13 +168,19 @@ if (!existsSync(join(dist, 'index.html'))) {
   fail('dist/index.html is missing -- run vite build first.');
 }
 
+if (!existsSync(serverEntry)) {
+  fail('dist-server/entry-server.js is missing -- run vite build --ssr first.');
+}
+
+const { render } = await import(pathToFileURL(serverEntry).href);
 const shell = injectHead(readFileSync(join(dist, 'index.html'), 'utf8'));
 const routes = [...STATIC_ROUTES, ...CASE_STUDY_SLUGS.map((slug) => `/projects/${slug}`)];
 
 console.log('emit-route-pages: writing');
 for (const route of routes) {
   const path = route === '/' ? 'index.html' : `${route.slice(1)}/index.html`;
-  write(path, setCanonical(shell, href(route)));
+  const rendered = await render(route);
+  write(path, setCanonical(withContent(shell, rendered), href(route)));
 }
 
 // Catch-all, served under a real HTTP 404. No canonical: it is not a page.

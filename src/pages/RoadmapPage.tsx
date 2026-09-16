@@ -23,7 +23,7 @@ export default function RoadmapPage() {
       </header>
 
       <div className="shell">
-        {ROADMAP.map((group) => (
+        {ROADMAP.filter((group) => group.entries.length > 0).map((group) => (
           <section
             aria-labelledby={`${group.id}-heading`}
             className={styles.section}

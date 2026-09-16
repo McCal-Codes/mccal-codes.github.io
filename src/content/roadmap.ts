@@ -58,7 +58,7 @@ export const ROADMAP: RoadmapGroup[] = [
         date: 'September 2026',
         title: 'Homepage grid and product captures',
         detail:
-          'The project index became a grid of project tiles, each with a real capture of the app.',
+          'The project index became a grid of project tiles, and the case studies got real captures in place of the reserved frames.',
       },
     ],
   },
@@ -96,14 +96,6 @@ export const ROADMAP: RoadmapGroup[] = [
     id: 'queued',
     label: 'Queued',
     summary: 'Committed to, not yet started. Nothing here is a promise about a date.',
-    entries: [
-      {
-        marker: 'This site',
-        date: 'Queued',
-        title: 'Interface captures',
-        detail:
-          'Real product screenshots for the case studies, replacing the reserved preview frames.',
-      },
-    ],
+    entries: [],
   },
 ];

@@ -85,15 +85,16 @@ export const PROJECTS: Project[] = [
         ],
         shots: [
           {
-            alt: 'TerraNova editor with the node graph, live terrain preview, and inspector visible at once.',
+            src: '/projects/terranova/editor.webp',
+            alt: 'TerraNova editor with the node graph on top, a 3D voxel terrain preview below it, the inspector on the right, and edit history on the left.',
             width: 1600,
-            height: 1000,
+            height: 883,
             caption: 'The editor. Graph, preview, and inspector share one window.',
             callouts: [
-              { index: '01', label: 'Node graph', x: 26, y: 42 },
-              { index: '02', label: 'Live preview', x: 66, y: 34 },
-              { index: '03', label: 'Inspector', x: 88, y: 56 },
-              { index: '04', label: 'Validation strip', x: 50, y: 88 },
+              { index: '01', label: 'Node graph', x: 45, y: 30 },
+              { index: '02', label: 'Live preview', x: 55, y: 80 },
+              { index: '03', label: 'Inspector', x: 95, y: 12 },
+              { index: '04', label: 'Validation strip', x: 17, y: 8.5 },
             ],
           },
         ],

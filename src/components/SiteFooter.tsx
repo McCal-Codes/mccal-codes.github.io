@@ -63,6 +63,11 @@ export default function SiteFooter() {
                 Photography portfolio<span aria-hidden="true"> ↗</span>
               </a>
             </li>
+            <li>
+              <a className={styles.link} href={SITE.kofi} rel="noreferrer" target="_blank">
+                Support on Ko-fi<span aria-hidden="true"> ↗</span>
+              </a>
+            </li>
           </ul>
 
           <p className={styles.note}>
