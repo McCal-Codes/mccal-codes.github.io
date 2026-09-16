@@ -46,7 +46,8 @@ that matters on Pages.
 | `src/styles/tokens.css` | The design system. One interface accent, one type scale, tile radii. Project colors live in each project's `tile`. |
 | `public/projects/` | Project icons and captures used by the tiles and case-study headers. |
 | `public/fonts/` | Self-hosted woff2. The CSP is `font-src 'self'`, so no external font host will load. |
-| `scripts/emit-route-pages.js` | Post-build. Pre-renders a page per route, injects the CSP, writes the sitemap. |
+| `src/entry-server.tsx` | Build-time renderer (`vite build --ssr`, output in `dist-server/`, not deployed). |
+| `scripts/emit-route-pages.js` | Post-build. Renders each route's content and title into its own HTML file, injects the CSP, writes the sitemap. |
 | `scripts/verify-dist.js` | Independent check that the build produced a publishable `dist`. |
 
 Adding a project means adding one entry to `src/content/projects.ts`. The homepage tile, the route,
@@ -61,8 +62,10 @@ two decisions.
 
 **Routes are pre-rendered.** Pages has no rewrite mechanism, so an SPA normally
 serves every deep link under an HTTP 404. This site is indexed, so
-`scripts/emit-route-pages.js` writes a real `index.html` per route and keeps
-`404.html` as the catch-all. Projects without a case study redirect to the
+`scripts/emit-route-pages.js` writes a real `index.html` per route, with the page's
+content and title already in the HTML, and the browser hydrates it. `404.html`
+stays an empty shell that renders on the client. Keep rendering free of browser
+APIs; anything that needs `window` or `document` belongs in an effect. Projects without a case study redirect to the
 index, so they are not pre-rendered.
 
 **The CSP is a meta tag, injected at build time.** It is not in `index.html`
