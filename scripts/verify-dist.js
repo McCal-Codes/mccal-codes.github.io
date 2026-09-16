@@ -24,7 +24,7 @@ const REQUIRED = [
 ];
 
 /** These redirect to '/', so serving them as pages would mislead crawlers. */
-const MUST_NOT_EXIST = ['projects/void-ledger/index.html', 'projects/experiments/index.html'];
+const MUST_NOT_EXIST = ['projects/folio/index.html'];
 
 const problems = [];
 

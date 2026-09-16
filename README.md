@@ -13,7 +13,8 @@ It shares the brand's dark tone, restraint, and typographic discipline with the 
 It does not share its layout system, gallery structure, or component library. The two are
 deliberately different mediums.
 
-Design direction: **dark technical editorial with product-system structure.**
+Design direction: **a dark bento grid that matches the McCal Ko-fi banner.** Each project gets a
+tile in its own color with a real capture of the app; the interface itself keeps one lavender accent.
 
 ## Local development
 
@@ -41,13 +42,14 @@ that matters on Pages.
 | --- | --- |
 | `src/content/` | All site content, typed. Projects, notes, activity, site identity. No CMS, no runtime fetch. |
 | `src/content/types.ts` | The case-study schema. Every project page renders through it. |
-| `src/components/` | The component kit (index rows, metadata tables, section nav, diagrams, timelines). |
-| `src/styles/tokens.css` | The design system. One accent token, one type scale. |
+| `src/components/` | The component kit (project tiles, metadata tables, section nav, diagrams, timelines). |
+| `src/styles/tokens.css` | The design system. One interface accent, one type scale, tile radii. Project colors live in each project's `tile`. |
+| `public/projects/` | Project icons and captures used by the tiles and case-study headers. |
 | `public/fonts/` | Self-hosted woff2. The CSP is `font-src 'self'`, so no external font host will load. |
 | `scripts/emit-route-pages.js` | Post-build. Pre-renders a page per route, injects the CSP, writes the sitemap. |
 | `scripts/verify-dist.js` | Independent check that the build produced a publishable `dist`. |
 
-Adding a project means adding one entry to `src/content/projects.ts`. The index row, the route,
+Adding a project means adding one entry to `src/content/projects.ts`. The homepage tile, the route,
 the metadata table, and the sticky section nav all derive from it. Adding or removing one fails
 the build until the slug lists in `scripts/emit-route-pages.js` are updated to match.
 
@@ -89,4 +91,7 @@ Recorded rather than fixed. Do not assume the previous posture carried over.
 - No fabricated metrics. Repository counts are shown only when they come from real data.
 - No AI terminology, branding, or features.
 - No em dashes in site copy. Use commas, parentheses, or sentence breaks.
+- Personal copy (the intro, project pitches) is in Caleb's own words or taken from the project's own
+  GitHub description or README. Ask rather than invent.
+- White text on a tile gradient must stay at 4.5:1 or better on both stops.
 - Status is communicated by shape and text, never by color alone.

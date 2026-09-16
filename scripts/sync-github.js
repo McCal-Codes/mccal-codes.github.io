@@ -33,7 +33,7 @@ const OUT = path.resolve(here, '..', 'src', 'content', 'github.json');
 const TARGETS = [
   { slug: 'terranova', owner: 'McCal-Codes', repo: 'TerraNova', releases: true },
   { slug: 'abridgd', owner: 'McCal-Codes', repo: 'abridgd', releases: true },
-  { slug: 'void-ledger', owner: 'McCal-Codes', repo: 'void-ledger', releases: true },
+  { slug: 'folio', owner: 'McCal-Codes', repo: 'folio', releases: true },
 ];
 
 function headers() {

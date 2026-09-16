@@ -27,10 +27,18 @@ export const PROJECTS: Project[] = [
       frameworks: ['Tauri', 'Vite'],
     },
     preview: {
-      alt: 'TerraNova node graph editor with a live terrain preview.',
-      width: 1600,
-      height: 1000,
+      src: '/projects/terranova/shape-preview.webp',
+      alt: 'TerraNova 3D shape preview of a terrain density field, shaded from red peaks to blue lows.',
+      width: 1200,
+      height: 962,
       callouts: [],
+    },
+    tile: {
+      kind: 'cover',
+      summary: 'An offline design studio for Hytale World Generation V2.',
+      icon: '/projects/terranova/icon.png',
+      from: '#15314a',
+      to: '#1d5a4c',
     },
     sections: [
       {
@@ -153,7 +161,7 @@ export const PROJECTS: Project[] = [
     pitch:
       'Read your local news and actually reach the end of it. No infinite feed, no national stories crowding out the ones near you.',
     audience: 'For people who want to stay local and stop scrolling',
-    status: 'prototype',
+    status: 'beta',
     meta: {
       type: 'Mobile application',
       role: 'Developer / Product designer',
@@ -162,10 +170,18 @@ export const PROJECTS: Project[] = [
       frameworks: ['React Native', 'Expo'],
     },
     preview: {
-      alt: 'Abridgd reading view showing a finite daily set of local stories.',
-      width: 1200,
-      height: 1500,
+      src: '/projects/abridgd/local-feed.webp',
+      alt: 'Abridgd Local tab listing the day’s Pittsburgh stories, each with its source.',
+      width: 602,
+      height: 1308,
       callouts: [],
+    },
+    tile: {
+      kind: 'device',
+      summary: 'A calm, local-first news reader for Pittsburgh.',
+      icon: '/projects/abridgd/icon.png',
+      from: '#1b4432',
+      to: '#2f6a49',
     },
     sections: [
       {
@@ -195,8 +211,7 @@ export const PROJECTS: Project[] = [
         heading: 'Where it stands',
         kind: 'prose',
         body: [
-          'The reading model works and the app runs. Active work is paused: the repository has been untouched for months, and the status above says prototype rather than claiming otherwise.',
-          'When it resumes, the open thread is information architecture and offline behaviour: what is kept on device, what happens at the edge of a cached set, and how the app says so instead of failing quietly.',
+          'In beta on iOS and Android. Recent work: Android support, rebuilt onboarding, feed fixes, and an accessibility pass.',
         ],
       },
     ],
@@ -204,41 +219,35 @@ export const PROJECTS: Project[] = [
 
   {
     index: '03',
-    slug: 'void-ledger',
-    title: 'Void Ledger',
-    purpose: 'Local-first Baro Ki’Teer planning for Warframe.',
+    slug: 'folio',
+    title: 'Folio',
+    purpose: 'An iPhone-style Home Screen for Android.',
     pitch:
-      'Work out what to buy before the trader arrives, on your own machine, with your own inventory. Nothing is uploaded anywhere.',
-    audience: 'For Warframe players who plan ahead',
+      'A clean, iPhone-style Home Screen for Android, with jailbreak-inspired tweaks. Made for foldables, works on phones and tablets.',
+    audience: 'For Android foldables, phones, and tablets',
     status: 'active-development',
     meta: {
-      type: 'Desktop application',
+      type: 'Android launcher',
       role: 'Developer',
-      platform: ['Windows'],
-      started: 'July 2026',
+      platform: ['Android'],
+      started: 'September 2026',
+      frameworks: ['Jetpack Compose'],
     },
     preview: {
-      alt: 'Void Ledger planning view listing Baro Ki’Teer inventory against owned items.',
-      width: 1600,
-      height: 1000,
+      src: '/projects/folio/home.webp',
+      alt: 'Folio Home Screen on a phone, with clock and date widgets above a grid of app icons.',
+      width: 624,
+      height: 986,
       callouts: [],
     },
-    sections: [],
-  },
-
-  {
-    index: '04',
-    slug: 'experiments',
-    title: 'Other work',
-    purpose: 'Smaller tools, mods, and client sites.',
-    pitch:
-      'Publication tooling, a Hytale worldgen mod about the uncanny valley, and a handful of sites built for other people.',
-    status: 'research',
-    meta: {
-      type: 'Assorted',
-      role: 'Developer',
-      platform: ['Various'],
-      started: '2024',
+    tile: {
+      kind: 'device',
+      size: 'tall',
+      icon: '/projects/folio/icon.png',
+      from: '#26305a',
+      to: '#3f2f63',
+      href: 'https://github.com/McCal-Codes/folio',
+      hrefLabel: 'View on GitHub',
     },
     sections: [],
   },

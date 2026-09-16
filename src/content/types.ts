@@ -15,6 +15,7 @@
 export type ProjectStatus =
   | 'active-alpha'
   | 'active-development'
+  | 'beta'
   | 'prototype'
   | 'research'
   | 'archived';
@@ -28,6 +29,7 @@ export interface StatusPresentation {
 export const STATUS_PRESENTATION: Record<ProjectStatus, StatusPresentation> = {
   'active-alpha': { glyph: '●', label: 'Active alpha' },
   'active-development': { glyph: '●', label: 'Active development' },
+  beta: { glyph: '◐', label: 'Beta' },
   prototype: { glyph: '○', label: 'Prototype' },
   research: { glyph: '□', label: 'Research' },
   archived: { glyph: '×', label: 'Archived' },
@@ -144,7 +146,32 @@ export interface Project {
   status: ProjectStatus;
   meta: ProjectMeta;
   preview?: AnnotatedShot;
+  /** How the project presents on the homepage grid. */
+  tile: ProjectTile;
   sections: CaseStudySection[];
+}
+
+/**
+ * Homepage tile styling.
+ *
+ * `cover` fills the tile with the preview behind a scrim. `device` puts the preview
+ * on the project's gradient as a phone-shaped capture that runs off the tile's edge.
+ * The gradient is always dark enough for white text at AA, with or without the image.
+ */
+export interface ProjectTile {
+  kind: 'cover' | 'device';
+  /** `tall` spans both grid rows beside the intro. One project at a time. */
+  size?: 'tall';
+  /** Tile copy. Falls back to `pitch`, then `purpose`. Keep it to a sentence or two. */
+  summary?: string;
+  /** App icon, square. Decorative: the title beside it carries the name. */
+  icon: string;
+  /** Gradient stops, top-left to bottom-right. */
+  from: string;
+  to: string;
+  /** Projects without a case study link here instead, e.g. the repository. */
+  href?: string;
+  hrefLabel?: string;
 }
 
 /* -- Other content ------------------------------------------------------- */

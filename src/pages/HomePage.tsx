@@ -1,85 +1,103 @@
+import type { CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { ACTIVITY } from '@/content/activity';
 import { NOTES } from '@/content/notes';
-import { PROJECTS } from '@/content/projects';
+import { PROJECTS, getProject } from '@/content/projects';
 import { SITE } from '@/content/site';
-import IndexRow from '@/components/IndexRow';
 import NoteCard from '@/components/NoteCard';
+import ProjectTile from '@/components/ProjectTile';
 import { useDocumentMeta } from '@/lib/useDocumentTitle';
 import styles from './HomePage.module.css';
 
+const LINKS = [
+  { label: 'Photos', value: SITE.portfolioLabel, href: SITE.portfolio },
+  { label: 'Code', value: SITE.githubLabel, href: SITE.github },
+] as const;
+
+/*
+  The tall tile sits beside the intro on wide screens and straight after it on
+  phones, so it comes first in the source too. Reading order matches what you see.
+*/
+const TILES = [...PROJECTS].sort(
+  (a, b) => Number(b.tile.size === 'tall') - Number(a.tile.size === 'tall'),
+);
+
 export default function HomePage() {
-  useDocumentMeta(SITE.name, SITE.intro);
+  useDocumentMeta(SITE.name, SITE.description);
 
   return (
     <>
-      <section className={`${styles.intro} grid-backdrop`}>
-        <div className="shell">
-          <p className={`${styles.eyebrow} meta`}>{SITE.person}</p>
+      <section aria-labelledby="intro-heading" className={styles.top} id="index">
+        <div className="shell-wide">
+          <div className={styles.grid}>
+            <div className={styles.hero}>
+              <p className={`${styles.person} meta`}>{SITE.person}</p>
+              <h1 className={styles.name} id="intro-heading">
+                {SITE.headline}
+              </h1>
+              <p className={styles.role}>{SITE.role}</p>
+              <p className={styles.intro}>{SITE.intro}</p>
 
-          <h1 className={styles.display}>{SITE.headline}</h1>
+              <ul className={styles.links}>
+                {LINKS.map((link) => (
+                  <li key={link.label}>
+                    <a className={styles.chip} href={link.href} rel="noreferrer" target="_blank">
+                      <span className={styles.chipLabel}>{link.label}</span>
+                      <span className={styles.chipValue}>
+                        {link.value}
+                        <span aria-hidden="true"> ↗</span>
+                        <span className="visually-hidden"> (opens in a new tab)</span>
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <p className={styles.lede}>{SITE.intro}</p>
+            <h2 className="visually-hidden">Projects</h2>
 
-          <p className={styles.focus}>{SITE.focus}</p>
-
-          <div className={styles.actions}>
-            <a className={styles.primary} href="#index">
-              See what I have built
-            </a>
-            <a
-              className={styles.secondary}
-              href={SITE.github}
-              rel="noreferrer"
-              target="_blank"
-            >
-              GitHub<span aria-hidden="true"> ↗</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="index-heading" className={styles.index} id="index">
-        <div className="shell">
-          <div className={styles.indexHead}>
-            <h2 className={styles.sectionHeading} id="index-heading">
-              What I am building
-            </h2>
-            <p className={styles.sectionNote}>
-              Four projects, in the order I started them. Each one has a write-up when
-              there is something worth writing.
-            </p>
-          </div>
-
-          <div className={styles.rows}>
-            {PROJECTS.map((project) => (
-              <IndexRow key={project.slug} project={project} />
+            {TILES.map((project, index) => (
+              <ProjectTile key={project.slug} priority={index === 0} project={project} />
             ))}
           </div>
         </div>
       </section>
 
-      <section aria-labelledby="currently-heading" className={styles.currently}>
-        <div className="shell">
+      <section aria-labelledby="currently-heading" className={styles.section}>
+        <div className="shell-wide">
           <h2 className={`${styles.blockHeading} meta`} id="currently-heading">
             What I am working on right now
           </h2>
 
           <ul className={styles.activity}>
-            {ACTIVITY.map((entry) => (
-              <li className={styles.activityItem} key={entry.slug}>
-                <Link className={styles.activityProject} to={`/projects/${entry.slug}`}>
-                  {entry.project}
-                </Link>
-                <p className={styles.activityDetail}>{entry.detail}</p>
-              </li>
-            ))}
+            {ACTIVITY.map((entry) => {
+              const project = getProject(entry.slug);
+              const style = project
+                ? ({
+                    '--tile-from': project.tile.from,
+                    '--tile-to': project.tile.to,
+                  } as CSSProperties)
+                : undefined;
+
+              return (
+                <li className={`${styles.activityItem} tile-surface`} key={entry.slug} style={style}>
+                  {project && project.sections.length > 0 ? (
+                    <Link className={styles.activityProject} to={`/projects/${entry.slug}`}>
+                      {entry.project}
+                    </Link>
+                  ) : (
+                    <p className={styles.activityProject}>{entry.project}</p>
+                  )}
+                  <p className={styles.activityDetail}>{entry.detail}</p>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </section>
 
-      <section aria-labelledby="notes-heading" className={styles.notes}>
-        <div className="shell">
+      <section aria-labelledby="notes-heading" className={styles.section}>
+        <div className="shell-wide">
           <div className={styles.notesHead}>
             <h2 className={`${styles.blockHeading} meta`} id="notes-heading">
               Build notes

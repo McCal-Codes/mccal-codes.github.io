@@ -12,7 +12,7 @@ export default function SiteHeader() {
 
   return (
     <header className={styles.header}>
-      <div className={`${styles.inner} shell`}>
+      <div className={`${styles.inner} shell-wide`}>
         <Link className={styles.identity} to="/">
           <span className={styles.mark}>{SITE.shortName}</span>
         </Link>

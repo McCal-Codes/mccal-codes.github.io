@@ -3,16 +3,19 @@ export const SITE = {
   shortName: 'McCal Dev',
   url: 'https://mccal-codes.github.io',
   person: 'Caleb McCartney',
-  /** The headline. Written as a person, not as a positioning statement. */
-  headline: 'I build the tools I wanted to exist.',
-  intro:
-    'I am a photographer who writes software. Most of what I build starts as a workflow that was worse than it needed to be, usually my own, and turns into an application other people end up using.',
-  /** One line under the intro. Concrete, so the headline does not float. */
-  focus:
-    'Desktop tooling, mobile applications, and the systems underneath them. For photographers, media workflows, and game-development communities.',
+  /** The homepage display name. Matches the Ko-fi banner. */
+  headline: 'McCal',
+  role: 'Photojournalist & Developer',
+  /** In Caleb's own words. */
+  intro: 'Hello, I just have fun.',
+  /** Used for the meta description, where the intro alone says too little. */
+  description:
+    'Caleb McCartney (McCal) is a photojournalist and developer. Folio, TerraNova, Abridgd, and build notes.',
   github: 'https://github.com/McCal-Codes',
   /** The editorial photography portfolio. Same person, different medium. */
   portfolio: 'https://mcc-cal.com',
+  portfolioLabel: 'mcc-cal.com',
+  githubLabel: 'github.com/McCal-Codes',
 } as const;
 
 export const NAV = [

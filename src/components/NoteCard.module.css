@@ -1,6 +1,9 @@
 .card {
-  padding: 1.5rem 0;
-  border-top: var(--rule);
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--panel);
+  border: var(--rule);
+  border-radius: var(--radius-tile);
 }
 
 .head {

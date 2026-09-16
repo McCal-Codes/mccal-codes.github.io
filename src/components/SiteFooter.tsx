@@ -15,7 +15,7 @@ const REPOSITORIES = PROJECTS.map((project) => getRepo(project.slug)).filter(
 export default function SiteFooter() {
   return (
     <footer className={styles.footer}>
-      <div className={`${styles.inner} shell`}>
+      <div className={`${styles.inner} shell-wide`}>
         <section aria-labelledby="footer-open-source" className={styles.block}>
           <h2 className={`${styles.heading} meta`} id="footer-open-source">
             Open source
@@ -71,7 +71,7 @@ export default function SiteFooter() {
         </section>
       </div>
 
-      <div className={`${styles.baseline} shell`}>
+      <div className={`${styles.baseline} shell-wide`}>
         <p className="meta">{SITE.name}</p>
         <p className={`${styles.synced} meta`}>
           Repository data synced {formatDate(GITHUB_SYNCED_AT.slice(0, 10))}

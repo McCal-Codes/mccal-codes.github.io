@@ -1,0 +1,185 @@
+/*
+  Project tile. The project's gradient is the ground; white text sits on it.
+  Every gradient stop is dark enough for white at 4.5:1 or better, so text stays
+  readable before the capture loads or if it never does.
+*/
+
+.tile {
+  --tile-pad: clamp(20px, 2.4vw, 32px);
+
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 24rem;
+  overflow: hidden;
+  border-radius: var(--radius-tile);
+  background: linear-gradient(145deg, var(--tile-from), var(--tile-to));
+  color: #fff;
+  container-type: inline-size;
+  transition: transform var(--dur) var(--ease);
+}
+
+.tile:hover {
+  transform: translateY(-3px);
+}
+
+/* The link's ring is drawn on the whole tile, which is what the link covers. */
+.tile:has(.link:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+/* Stretch the one link over the whole tile. */
+.link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: var(--tile-pad);
+}
+
+.icon {
+  width: clamp(48px, 4.2vw, 64px);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 22%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+  margin-top: 1.1rem;
+  font-size: var(--step-tile);
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.summary {
+  margin-top: 0.5rem;
+  max-width: 34ch;
+  font-size: var(--step-body);
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+  text-wrap: pretty;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  margin-top: 1rem;
+}
+
+.facts .status,
+.facts .stack {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.content .cta {
+  margin-top: 1rem;
+  color: #fff;
+}
+
+.shot {
+  display: block;
+}
+
+/* --- Cover: the capture fills the tile, text sits on a scrim ------------ */
+
+.coverMedia {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.coverMedia .shot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 400ms var(--ease);
+}
+
+.coverMedia::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 8, 12, 0.35) 0%,
+    rgba(6, 8, 12, 0.1) 22%,
+    rgba(6, 8, 12, 0.82) 52%,
+    rgba(6, 8, 12, 0.94) 100%
+  );
+}
+
+.tile:hover .coverMedia .shot {
+  transform: scale(1.03);
+}
+
+.cover .content {
+  flex: 1;
+}
+
+/* Icon at the top, words at the bottom. */
+.cover .icon {
+  margin-bottom: auto;
+}
+
+/* --- Device: a phone capture that runs off the tile's bottom edge ------- */
+
+.deviceMedia {
+  position: relative;
+  z-index: 0;
+  align-self: center;
+  width: min(56%, 17rem);
+  margin-top: auto;
+  margin-bottom: -7rem;
+  padding-top: 0.5rem;
+  transition: transform 400ms var(--ease);
+}
+
+.deviceMedia .shot {
+  width: 100%;
+  height: auto;
+  border-radius: 12% / 5.5%;
+  box-shadow: var(--shadow-device);
+}
+
+.tile:hover .deviceMedia {
+  transform: translateY(-6px);
+}
+
+/* Wide enough for words and phone side by side. */
+@container (min-width: 25rem) {
+  .device:not(.tall) .content {
+    padding-right: 46%;
+  }
+
+  .device:not(.tall) .deviceMedia {
+    position: absolute;
+    top: clamp(3.5rem, 16cqi, 6rem);
+    right: var(--tile-pad);
+    width: 38%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.tall .deviceMedia {
+  width: min(80%, 21rem);
+  margin-bottom: -9rem;
+}

@@ -53,6 +53,13 @@ export const ROADMAP: RoadmapGroup[] = [
         detail:
           'Software work moved to its own publication rather than sharing the photography site.',
       },
+      {
+        marker: '2026.09',
+        date: 'September 2026',
+        title: 'Homepage grid and product captures',
+        detail:
+          'The project index became a grid of project tiles, each with a real capture of the app.',
+      },
     ],
   },
   {
@@ -68,10 +75,19 @@ export const ROADMAP: RoadmapGroup[] = [
         current: true,
       },
       {
-        marker: 'Void Ledger',
+        marker: 'Folio',
         date: 'In progress',
-        title: 'Planning view',
-        detail: 'Local inventory matching against trader stock. Nothing released yet.',
+        title: 'Folders, hidden apps, and adaptive layouts',
+        detail:
+          'Folders past two apps, hidden apps behind a lock, a Work Apps switch, and layouts that adapt to each screen and fold.',
+        current: true,
+      },
+      {
+        marker: 'Abridgd',
+        date: 'Beta',
+        title: 'iOS and Android beta',
+        detail:
+          'Recent work: Android support, rebuilt onboarding, feed fixes, and an accessibility pass.',
         current: true,
       },
     ],
@@ -81,13 +97,6 @@ export const ROADMAP: RoadmapGroup[] = [
     label: 'Queued',
     summary: 'Committed to, not yet started. Nothing here is a promise about a date.',
     entries: [
-      {
-        marker: 'Abridgd',
-        date: 'Paused',
-        title: 'Information architecture and offline behaviour',
-        detail:
-          'What is kept on device, what happens at the edge of a cached set, and how the app says so. The repository has been idle for months; this resumes when it resumes.',
-      },
       {
         marker: 'This site',
         date: 'Queued',

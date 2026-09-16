@@ -11,8 +11,15 @@ export const ACTIVITY: ActivityEntry[] = [
     detail: 'Working the alpha channel toward a preview you can trust, and making density fields inspectable.',
   },
   {
-    project: 'Void Ledger',
-    slug: 'void-ledger',
-    detail: 'Building out the planning view against a local inventory. No releases cut yet.',
+    project: 'Folio',
+    slug: 'folio',
+    detail:
+      'Folders past two apps, hidden apps behind a lock, a Work Apps switch, and layouts that adapt to each screen and fold.',
+  },
+  {
+    project: 'Abridgd',
+    slug: 'abridgd',
+    detail:
+      'In beta on iOS and Android. Recent work: Android support, rebuilt onboarding, feed fixes, and an accessibility pass.',
   },
 ];

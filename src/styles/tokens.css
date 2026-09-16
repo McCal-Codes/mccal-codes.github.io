@@ -1,26 +1,21 @@
 /*
   Design system for the technical portfolio
 
-  Colors are the McCal Media brand palette (Business Marketing Kit / Color Palette),
-  mapped to interface roles in ramp order:
+  Matches the McCal Ko-fi banner: a cool near-black ground, rounded tiles, and a
+  soft lavender glow behind the name. Projects bring their own color through their
+  homepage tiles (see `ProjectTile` in content/types.ts); the interface itself keeps
+  one accent, lavender, used for focus, active states, and emphasis.
 
-    272423  panel
-    302C2C  panel raised
-    363230  border
-    5B5553  border strong
-    B8B0AA  muted text
-    CAC2BA  primary text
+  Contrast, measured against --bg (and --panel):
+    --text   #ECEBF3  16.6:1  (15.4:1)
+    --muted  #B7B4CB   9.7:1   (9.0:1)
+    --dim    #8F8CA6   6.1:1   (5.6:1)  AA at every size; used for metadata
+    --accent #CFC8F5  12.4:1  (11.5:1)
 
-  Two values are interpolated rather than taken from the kit, both for contrast:
-    --bg   #171514  extends the ramp darker, because a screen ground needs more
-                    depth than a print ground
-    --dim  #8A827C  sits between 5B5553 and B8B0AA. The kit's 5B5553 is only
-                    2.4:1 on --bg, which fails AA at the metadata size where
-                    this token is used most.
+  Tile gradients: white text is 6.4:1 or better on every stop.
 
-  The brand carries no accent color. Emphasis is bone at full strength against
-  muted text, plus weight and rules. Status is never color alone: see StatusMarker,
-  where shape and label carry the meaning and color is decoration.
+  Status is never color alone: see StatusMarker, where shape and label carry the
+  meaning and color is decoration.
 
   Three-tier typographic hierarchy, enforced by component:
     1. Large sans display headings
@@ -32,32 +27,37 @@
   color-scheme: dark;
 
   /* Surface depth */
-  --bg: #171514;
-  --panel: #272423;
-  --panel-raised: #302c2c;
+  --bg: #0b0b10;
+  --panel: #15151c;
+  --panel-raised: #1d1c27;
 
   /* Text */
-  --text: #cac2ba;
-  --muted: #b8b0aa;
-  --dim: #8a827c;
+  --text: #ecebf3;
+  --muted: #b7b4cb;
+  --dim: #8f8ca6;
 
   /* Lines */
-  --border: #363230;
-  --border-strong: #5b5553;
+  --border: #25242f;
+  --border-strong: #3b3a4b;
 
   /* Emphasis. One family only. */
-  --accent: #e8e2d9;
-  --accent-dim: #b8b0aa;
-  --accent-fg: #171514;
-  --accent-wash: rgba(232, 226, 217, 0.1);
+  --accent: #cfc8f5;
+  --accent-dim: #a79fd6;
+  --accent-fg: #0b0b10;
+  --accent-wash: rgba(207, 200, 245, 0.1);
+
+  /* The glow behind the name, from the banner. */
+  --glow: #2c2444;
 
   /* Type */
   --font-sans: 'Jakarta', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Plex Mono', ui-monospace, 'SF Mono', 'Cascadia Mono', monospace;
 
+  --step-hero: clamp(4.5rem, 11vw, 9.5rem);
   --step-display: clamp(2.25rem, 5.5vw, 4rem);
   --step-h2: clamp(1.625rem, 3vw, 2.375rem);
   --step-h3: clamp(1.125rem, 1.5vw, 1.375rem);
+  --step-tile: clamp(1.5rem, 2.2vw, 2rem);
   --step-body: 1.0625rem;
   --step-small: 0.9375rem;
   --step-meta: 0.75rem;
@@ -68,11 +68,19 @@
 
   /* Layout */
   --measure: 68ch;
-  --gutter: clamp(20px, 4vw, 48px);
+  --gutter: clamp(16px, 4vw, 48px);
   --shell-max: 1240px;
+  --shell-wide: 1440px;
   --rule: 1px solid var(--border);
   /* The sticky header height. SectionNav pins directly below it. */
   --header-height: 3.25rem;
+
+  /* Tiles */
+  --radius-tile: clamp(20px, 2vw, 28px);
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --gap-tile: clamp(10px, 1.1vw, 14px);
+  --shadow-device: 0 18px 40px rgba(0, 0, 0, 0.45);
 
   /* Motion */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);

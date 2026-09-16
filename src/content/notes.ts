@@ -19,13 +19,6 @@ export const NOTES: BuildNote[] = [
     project: 'Abridgd',
     hook: 'Local news is finite. An interface that pretends otherwise is lying about the day.',
   },
-  {
-    slug: 'local-first-data-model',
-    title: 'Designing a local-first data model that survives being wrong',
-    date: '2026-07-05',
-    project: 'Void Ledger',
-    hook: 'Local-first means the cache is the product. Getting the invalidation wrong is not a bug, it is a lie.',
-  },
 ];
 
 export function getNote(slug: string): BuildNote | undefined {

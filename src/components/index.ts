@@ -1,9 +1,9 @@
 export { default as AnnotatedShot } from './AnnotatedShot';
 export { default as Diagram } from './Diagram';
-export { default as IndexRow } from './IndexRow';
 export { default as MetaTable } from './MetaTable';
 export { default as NoteCard } from './NoteCard';
 export { default as PreviewFrame } from './PreviewFrame';
+export { default as ProjectTile } from './ProjectTile';
 export { default as Prose } from './Prose';
 export { default as SectionNav } from './SectionNav';
 export { default as SiteFooter } from './SiteFooter';

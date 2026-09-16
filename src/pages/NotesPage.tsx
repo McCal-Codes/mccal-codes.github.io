@@ -22,7 +22,7 @@ export default function NotesPage() {
         </div>
       </header>
 
-      <div className={`${styles.body} shell`}>
+      <div className={`${styles.body} ${styles.stack} shell`}>
         {NOTES.map((note) => (
           <NoteCard key={note.slug} note={note} />
         ))}

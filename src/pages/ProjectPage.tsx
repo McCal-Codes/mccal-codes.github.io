@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { getProject } from '@/content/projects';
 import { formatDate, getRepo } from '@/content/github';
@@ -117,7 +118,30 @@ export default function ProjectPage() {
             </div>
 
             <div className={styles.previewCell}>
-              <PreviewFrame label={`${project.title} preview`} shot={project.preview} />
+              {project.preview?.src ? (
+                <div
+                  className={styles.stage}
+                  data-kind={project.tile.kind}
+                  style={
+                    {
+                      '--tile-from': project.tile.from,
+                      '--tile-to': project.tile.to,
+                    } as CSSProperties
+                  }
+                >
+                  <img
+                    alt={project.preview.alt}
+                    className={styles.stageShot}
+                    decoding="async"
+                    fetchPriority="high"
+                    height={project.preview.height}
+                    src={project.preview.src}
+                    width={project.preview.width}
+                  />
+                </div>
+              ) : (
+                <PreviewFrame label={`${project.title} preview`} shot={project.preview} />
+              )}
             </div>
           </div>
 

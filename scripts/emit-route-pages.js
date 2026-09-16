@@ -26,7 +26,7 @@ const STATIC_ROUTES = ['/', '/notes', '/roadmap', '/about'];
 const CASE_STUDY_SLUGS = ['terranova', 'abridgd'];
 
 /** Every project in the index, including those without a case study. */
-const ALL_SLUGS = ['terranova', 'abridgd', 'void-ledger', 'experiments'];
+const ALL_SLUGS = ['terranova', 'abridgd', 'folio'];
 
 /**
  * `frame-ancestors`, `report-uri`/`report-to` and `sandbox` are ignored in a
