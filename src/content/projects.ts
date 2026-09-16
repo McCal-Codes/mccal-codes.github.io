@@ -222,6 +222,9 @@ export const PROJECTS: Project[] = [
     index: '03',
     slug: 'folio',
     title: 'Folio',
+    seoTitle: 'Folio Launcher: iOS without the barriers',
+    seoDescription:
+      'Folio Launcher is a free, open-source, iPhone-style Home Screen for Android foldables like the Galaxy Z Fold, with jailbreak-inspired tweaks. No root needed.',
     purpose: 'An iPhone-style Home Screen for Android.',
     pitch:
       'A clean, iPhone-style Home Screen for Android, with jailbreak-inspired tweaks. Made for foldables, works on phones and tablets.',
@@ -250,7 +253,92 @@ export const PROJECTS: Project[] = [
       href: 'https://github.com/McCal-Codes/folio',
       hrefLabel: 'View on GitHub',
     },
-    sections: [],
+    sections: [
+      {
+        id: 'story',
+        label: 'Story',
+        heading: 'Why I made this',
+        kind: 'prose',
+        body: [
+          "Honestly, I started this for fun. I've spent the last few months building an iPhone app, then I got a Galaxy Z Fold8 and got excited by how much Android lets you customize. At the same time I felt a little homesick for Apple, or at least for the jailbreak features I loved. I've been in the iOS jailbreak world since iOS 7 or 8, so this was me getting back into it.",
+          'I want to give back to the open-source community, so Folio is free and open source.',
+          "Anyone who wants a clean look, likes the Apple style without Apple's restrictions, or just wants their phone to work the way they want. I'm building what I knew I couldn't have on iPhone.",
+        ],
+      },
+      {
+        id: 'challenges',
+        label: 'Challenges',
+        heading: 'What was hard',
+        kind: 'list',
+        items: [
+          'Learning Android. The hardest part was learning how permissions work and how launchers work. I got the hang of it.',
+          'The fold animation. The Fold8 only tells apps 0°, 90° and 180°, so Folio predicts the motion in between and learns how fast you fold.',
+          'One layout for every screen. The cover, the inner screen, portrait, landscape and zoom settings all get the same Folio, laid out by how much room there is rather than by device.',
+          'The iOS feel without root. Dynamic Island, Control Center and the iPhone Duo Side Bar are rebuilt with the permissions any Android app can ask for.',
+        ],
+      },
+      {
+        id: 'tour',
+        label: 'Tour',
+        heading: 'A quick look',
+        kind: 'shots',
+        shots: [
+          {
+            src: '/projects/folio/home-features.gif',
+            alt: 'Folio on the unfolded Galaxy Z Fold8: Home and the Side Bar, Spotlight, the App Library, Control Center, jiggle mode, the widget gallery, Dock Magnification and App Panels.',
+            width: 720,
+            height: 406,
+            caption: 'Home, Spotlight, App Library, Control Center, jiggle mode, widgets and tweaks.',
+            callouts: [],
+          },
+          {
+            src: '/projects/folio/personalize.gif',
+            alt: 'Folio personalization: tinted icons, left-handed mode, the Classic, Dark, Tinted and Clear themes, the Tweak Library, the Roadmap and the fold effect preview.',
+            width: 720,
+            height: 406,
+            caption: 'Tinted icons, left-handed mode, themes, the Tweak Library, the Roadmap and the fold effect. Icons: Minimal O by JustNewDesigns.',
+            callouts: [],
+          },
+        ],
+      },
+      {
+        id: 'features',
+        label: 'Features',
+        heading: 'What it does',
+        kind: 'list',
+        items: [
+          'The iPhone Duo Side Bar: the status bar, a Dynamic Island that wraps the camera, and the dock.',
+          'Notification Center, Control Center, Spotlight, Today View, Smart Stacks and the widget gallery.',
+          'Jiggle mode, folders, Icon Stacks and the App Library.',
+          'Tweaks inspired by jailbreak favorites (Velox, Activator, Velvet, Axon, ColorFlow, Harbor), from a Sileo-style Tweak Library.',
+          'Themes you can save and share, tinted icons, badges that match each app, and icon pack support.',
+          'Two Home pages side by side when you open the Fold, and a full Home on the cover screen.',
+          'Updates straight from GitHub, checked against the signing key.',
+          'No accounts, no ads, no analytics, and no root.',
+        ],
+      },
+      {
+        id: 'releases',
+        label: 'Releases',
+        heading: 'Releases',
+        kind: 'releases',
+      },
+      {
+        id: 'credits',
+        label: 'Credits',
+        heading: 'Credits',
+        kind: 'list',
+        body: ['Anything that came from someone else, or that inspired me, is credited here and in the app.'],
+        items: [
+          'DuoLauncher by jakesgoodapps and contributors (MIT): the starting codebase.',
+          "iphone-duo by chuspeeism (MIT): the fold blur and darkening model.",
+          "u/moomanjohnny's iPhone Duo concept on the Galaxy Z Fold8: the inspiration.",
+          'FoldFX by u/FixHour8452: fold transition ideas.',
+          "ZFoldDuo by nnnnnnn0090 (MIT): research on the Fold's hinge angle.",
+          'Minimal O by JustNewDesigns: the icon pack in the screenshots.',
+        ],
+      },
+    ],
   },
 ];
 

@@ -24,7 +24,7 @@ const SITE_URL = 'https://mccal-codes.github.io';
 const STATIC_ROUTES = ['/', '/notes', '/roadmap', '/about'];
 
 /** Projects with a case study. These get a pre-rendered page. */
-const CASE_STUDY_SLUGS = ['terranova', 'abridgd'];
+const CASE_STUDY_SLUGS = ['terranova', 'abridgd', 'folio'];
 
 /** Every project in the index, including those without a case study. */
 const ALL_SLUGS = ['terranova', 'abridgd', 'folio'];

@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/sync-github.js",
-  "generatedAt": "2026-09-16T18:35:54.501Z",
+  "generatedAt": "2026-09-16T22:23:13.302Z",
   "repos": [
     {
       "slug": "terranova",
@@ -144,7 +144,7 @@
       "fullName": "McCal-Codes/folio",
       "url": "https://github.com/McCal-Codes/folio",
       "private": false,
-      "description": "A clean, iPhone-style Home Screen for Android, with jailbreak-inspired tweaks. Made for foldables, works on phones and tablets.",
+      "description": "Folio Launcher: a clean, iPhone-style (iOS) Home Screen for Android foldables like the Galaxy Z Fold, with jailbreak-inspired tweaks. Free, open source, no root.",
       "homepage": "https://github.com/McCal-Codes/folio/releases/latest",
       "license": "MIT",
       "topics": [
@@ -155,11 +155,16 @@
         "galaxy-z-fold",
         "home-screen",
         "ios",
+        "ios-launcher",
         "iphone-duo",
+        "iphone-launcher",
         "jailbreak",
         "jetpack-compose",
         "kotlin",
-        "launcher"
+        "launcher",
+        "one-ui",
+        "open-source",
+        "samsung-galaxy"
       ],
       "languages": [
         {
@@ -170,16 +175,30 @@
       "createdAt": "2026-09-15",
       "pushedAt": "2026-09-16",
       "defaultBranch": "main",
-      "stars": 5,
+      "stars": 12,
       "forks": 0,
       "latestRelease": {
-        "tag": "v0.5.0",
-        "name": "Folio 0.5.0",
-        "date": "2026-09-15",
+        "tag": "v0.6.0",
+        "name": "Folio 0.6.0",
+        "date": "2026-09-16",
         "prerelease": false,
-        "url": "https://github.com/McCal-Codes/folio/releases/tag/v0.5.0"
+        "url": "https://github.com/McCal-Codes/folio/releases/tag/v0.6.0"
       },
       "releases": [
+        {
+          "tag": "v0.6.0",
+          "name": "Folio 0.6.0",
+          "date": "2026-09-16",
+          "prerelease": false,
+          "url": "https://github.com/McCal-Codes/folio/releases/tag/v0.6.0"
+        },
+        {
+          "tag": "v0.5.1",
+          "name": "Folio 0.5.1",
+          "date": "2026-09-16",
+          "prerelease": false,
+          "url": "https://github.com/McCal-Codes/folio/releases/tag/v0.5.1"
+        },
         {
           "tag": "v0.5.0",
           "name": "Folio 0.5.0",

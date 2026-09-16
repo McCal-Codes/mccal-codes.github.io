@@ -21,10 +21,11 @@ const REQUIRED = [
   'about/index.html',
   'projects/terranova/index.html',
   'projects/abridgd/index.html',
+  'projects/folio/index.html',
 ];
 
 /** These redirect to '/', so serving them as pages would mislead crawlers. */
-const MUST_NOT_EXIST = ['projects/folio/index.html'];
+const MUST_NOT_EXIST = [];
 
 const problems = [];
 
@@ -51,6 +52,7 @@ const RENDERED = {
   'about/index.html': 'Photojournalist &amp; Developer',
   'projects/terranova/index.html': 'An offline design studio for Hytale World Generation V2.',
   'projects/abridgd/index.html': 'Where it stands',
+  'projects/folio/index.html': 'Why I made this',
 };
 for (const [path, text] of Object.entries(RENDERED)) {
   try {

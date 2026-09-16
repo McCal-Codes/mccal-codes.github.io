@@ -81,7 +81,10 @@ export default function ProjectPage() {
     ...(project?.meta.frameworks ?? []),
   ];
 
-  useDocumentMeta(project ? project.title : 'Not found', project?.purpose);
+  useDocumentMeta(
+    project ? (project.seoTitle ?? project.title) : 'Not found',
+    project?.seoDescription ?? project?.purpose,
+  );
 
   // A project without a case study has no page. The index row does not link here,
   // so reaching this state means a hand-typed URL.

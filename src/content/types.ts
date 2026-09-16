@@ -144,6 +144,10 @@ export interface Project {
   /** Who it is for. Short. */
   audience?: string;
   status: ProjectStatus;
+  /** The page title search engines show, when it should say more than the name. */
+  seoTitle?: string;
+  /** The page's meta description. Falls back to `purpose`. */
+  seoDescription?: string;
   meta: ProjectMeta;
   preview?: AnnotatedShot;
   /** How the project presents on the homepage grid. */
