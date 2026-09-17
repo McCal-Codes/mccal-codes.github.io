@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/sync-github.js",
-  "generatedAt": "2026-09-16T22:23:13.302Z",
+  "generatedAt": "2026-09-17T06:48:05.172Z",
   "repos": [
     {
       "slug": "terranova",
@@ -145,7 +145,7 @@
       "url": "https://github.com/McCal-Codes/folio",
       "private": false,
       "description": "Folio Launcher: a clean, iPhone-style (iOS) Home Screen for Android foldables like the Galaxy Z Fold, with jailbreak-inspired tweaks. Free, open source, no root.",
-      "homepage": "https://github.com/McCal-Codes/folio/releases/latest",
+      "homepage": "https://mccal-codes.github.io/projects/folio/",
       "license": "MIT",
       "topics": [
         "android",
@@ -175,7 +175,7 @@
       "createdAt": "2026-09-15",
       "pushedAt": "2026-09-16",
       "defaultBranch": "main",
-      "stars": 12,
+      "stars": 17,
       "forks": 0,
       "latestRelease": {
         "tag": "v0.6.0",
